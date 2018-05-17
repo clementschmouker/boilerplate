@@ -45,16 +45,22 @@ gulp.task('html', () => {
 	.pipe(gulp.dest('dist'));
 })
 
+gulp.task('php', () => {
+	return gulp.src('src/**/*.php')
+	.pipe(gulp.dest('dist'));
+})
+
 gulp.task('watch', ['browserSync', 'img', 'sass', 'js'], () => {
 	gulp.watch('src/assets/img/**/*{jpg,jpeg,png,gif}', ['img']);
 	gulp.watch('src/assets/scss/**/*.scss', ['sass']);
 	gulp.watch('src/**/*.html', ['html']);
+	gulp.watch('src/**/*.php', ['php']);
 	gulp.watch('src/**/*.html', browserSync.reload);
 	gulp.watch('src/assets/js/**/*.js', ['js']);
 	gulp.watch('src/assets/js/**/*.js', browserSync.reload);
 });
 
-gulp.task('build', ['html', 'img', 'sass', 'js-build']);
+gulp.task('build', ['html', 'php', 'img', 'sass', 'js-build']);
 
 
 // Browser Sync
