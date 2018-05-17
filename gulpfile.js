@@ -40,22 +40,28 @@ gulp.task('img', () => {
 	.pipe(gulp.dest('dist/assets/_img'));
 })
 
+gulp.task('html', () => {
+	return gulp.src('src/*.html')
+	.pipe(gulp.dest('dist'));
+})
+
 gulp.task('watch', ['browserSync', 'img', 'sass', 'js'], () => {
 	gulp.watch('src/assets/img/**/*{jpg,jpeg,png,gif}', ['img']);
 	gulp.watch('src/assets/scss/**/*.scss', ['sass']);
-	gulp.watch('*.html', browserSync.reload);
+	gulp.watch('src/*.html', ['html'])
+	gulp.watch('src/*.html', browserSync.reload);
 	gulp.watch('src/assets/js/**/*.js', ['js']);
 	gulp.watch('src/assets/js/**/*.js', browserSync.reload);
 });
 
-gulp.task('build', ['img', 'sass', 'js-build']);
+gulp.task('build', ['html', 'img', 'sass', 'js-build']);
 
 
 // Browser Sync
 gulp.task('browserSync', () => {
 	browserSync.init({
 		server: {
-			baseDir: './'
+			baseDir: './dist'
 		},
 	});
 });
