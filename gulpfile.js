@@ -48,7 +48,7 @@ gulp.task('html', () => {
 gulp.task('watch', ['browserSync', 'img', 'sass', 'js'], () => {
 	gulp.watch('src/assets/img/**/*{jpg,jpeg,png,gif}', ['img']);
 	gulp.watch('src/assets/scss/**/*.scss', ['sass']);
-	gulp.watch('src/**/*.html', ['html'])
+	gulp.watch('src/**/*.html', ['html']);
 	gulp.watch('src/**/*.html', browserSync.reload);
 	gulp.watch('src/assets/js/**/*.js', ['js']);
 	gulp.watch('src/assets/js/**/*.js', browserSync.reload);
